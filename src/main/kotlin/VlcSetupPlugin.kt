@@ -42,7 +42,7 @@ abstract class VlcSetupPlugin : Plugin<Project> {
         }
 
         /**
-         * See <PROJECT_ROOT>/README.md -> Embedding VLC DLL files section for more info
+         * See the README of vlcSetup Gradle plugin for more information
          * and also https://docs.gradle.org/current/userguide/working_with_files.html
          */
         project
