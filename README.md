@@ -1,3 +1,5 @@
+TODO: Promote on https://klibs.io/
+
 Links for downloading VLC releases (source code or packaged):
   - https://get.videolan.org/vlc/
   - https://download.videolan.org/pub/vlc/
