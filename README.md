@@ -1,5 +1,7 @@
 TODO: Promote on https://klibs.io/
 
+For a list of tested media formats and codecs, see the HTML file besides this file.
+
 Links for downloading VLC releases (source code or packaged):
   - https://get.videolan.org/vlc/
   - https://download.videolan.org/pub/vlc/
