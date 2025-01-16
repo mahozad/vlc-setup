@@ -51,6 +51,7 @@ https://unix.stackexchange.com/questions/46478/join-the-executable-and-all-its-l
 
 ## Setup VLC for Linux
 In each of VLC releases, it provides installers for Windows and macOS but provides just the source code (a tar file) for Linux.
+Providing VLC for Linux is more complicated: see https://github.com/caprica/vlcj/issues/1096#issuecomment-981168374
 There are various ways to build VLC for Linux:
   - Download the VLC release source code tar (from the links above) and build the vlc dynamically (use the distro libraries) (see building for linux above)
   - Download the VLC release source code tar (from the links above) and build the vlc statically (provide all needed libraries) (see building for linux above)
@@ -136,9 +137,10 @@ Here are the steps for extracting the vlc snap package (tried on Ubuntu 18.04):
 
 1. Remove the default installed VLC (if any) on Ubuntu (to make sure our app does not accidentally use it):  
    https://askubuntu.com/questions/572865/how-to-fully-remove-vlc-player
-   - sudo apt autoremove
+   - snap remove vlc
    - sudo apt remove vlc-nox
    - sudo apt remove vlc
+   - sudo apt autoremove
 
 2. Make sure no VLC is installed:
    which vlc
@@ -149,10 +151,10 @@ Here are the steps for extracting the vlc snap package (tried on Ubuntu 18.04):
    - snap info vlc
 
 4. Download the snap package of VLC (instead of directly installing it)  
-   it will be downloaded in the current working directory  
-   Another way to get a direct download link (and other information) of the vlc snap: https://search.apps.ubuntu.com/api/v1/package/vlc
+   it will be downloaded in the current working directory
    - sudo snap download vlc --channel=latest/stable
    (can also install vlc with sudo snap install vlc --channel=latest/stable)
+   - Another way to get a direct download link (and other information) of the vlc snap: https://search.apps.ubuntu.com/api/v1/package/vlc
 
 5. Extract the Snap file using either of the following ways:  
    https://askubuntu.com/questions/1162798/how-do-i-view-the-contents-of-a-snap-file
