@@ -66,6 +66,20 @@ See:
   - https://www.tecmint.com/understanding-shared-libraries-in-linux/
   - https://github.com/conan-io/conan/issues/11465#Sharing-binaries-across-different-linux-distros
 
+### Troubleshooting and debugging
+  - Make sure to clean/delete the clipper/cutcon directory in which the vlcSetup plugin copies the vlc plugins to
+  - Make sure to clean/delete the vlc files and directories in the ~/.gradle/vlc-plugins-linux
+  - Make sure to clean/delete the vlc files and directories in the ~/.gradle/vlc-setup
+  - Try to enable the full (all) vlc plugins by setting environment variable `vlcAllPlugins=true` (or any other way that this is set in the application or vlcSetup plugin)
+  - Try to disable compression of plugins by setting environment variable `vlcCompression=false` (or any other way that this is set in the application or vlcSetup plugin)
+  - Enable clipper/cutcon debug logs by setting environment variable `loggingLevel=debug` (or any other way that this is set in the application)
+    + This enables getting the vlcj-found path of vlc plugins. The path is accessible in the `onFound()` method of our custom discoverer
+  - Inspect the exact logs of vlc plugins printed in the standard output
+  - Remove the `--plugins-cache` vlc option in the MediaPlayer class of clipper/cutcon
+  - Add `--reset-plugins-cache` vlc option in the MediaPlayer class of clipper/cutcon
+  - Add `--no-plugins-cache` vlc option in the MediaPlayer class of clipper/cutcon
+  - Do a successful run of the clipper/cutcon app on a linux distribution that runs the app successfully and check which .so libraries are loaded/accessed by the clipper/cutcon process
+
 ### Build VLC from source code (dynamically or statically)
 See building for Linux above for more detail.
   - Download the VLC release source code archive (see the links above)
