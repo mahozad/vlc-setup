@@ -28,7 +28,7 @@ abstract class VlcSetupPlugin : Plugin<Project> {
             val vlcSetupTask = tasksConfigure.configure()
             vlcSetupTask?.let(vlcSetupTasks::add)
         }
-        // See the README of the plugin for more information
+        // See the PROJECT.md file for more information
         // and also https://docs.gradle.org/current/userguide/working_with_files.html
         project
             .tasks
