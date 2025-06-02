@@ -23,7 +23,7 @@ tasks.withType<Test> {
 gradlePlugin {
     plugins {
         create("vlc-setup") {
-            id = "vlc-setup"
+            id = "ir.mahozad.vlc-setup"
             implementationClass = "ir.mahozad.vlcsetup.VlcSetupPlugin"
             description = """
                 Prepares and builds VLC for Compose Multiplatform desktop applications
