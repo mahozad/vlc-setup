@@ -14,7 +14,7 @@ class UnitTest {
     fun `When user project has no task named clean, applying the plugin should not throw error`() {
         val project = ProjectBuilder.builder().build()
         assertDoesNotThrow {
-            project.pluginManager.apply("vlc-setup")
+            project.pluginManager.apply("ir.mahozad.vlc-setup")
         }
     }
 
@@ -22,7 +22,7 @@ class UnitTest {
     @EnabledOnOs(OS.WINDOWS)
     fun `When user project applies the plugin in Windows, the vlcSetup task should be added to the project`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("vlc-setup")
+        project.pluginManager.apply("ir.mahozad.vlc-setup")
         assertThat(project.tasks.getByName("vlcSetup"))
             .isInstanceOf(ir.mahozad.vlcsetup.win.VlcSetupTask::class.java)
     }
@@ -31,7 +31,7 @@ class UnitTest {
     @EnabledOnOs(OS.LINUX)
     fun `When user project applies the plugin in Linux, the vlcSetup task should be added to the project`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("vlc-setup")
+        project.pluginManager.apply("ir.mahozad.vlc-setup")
         assertThat(project.tasks.getByName("vlcSetup"))
             .isInstanceOf(ir.mahozad.vlcsetup.lin.VlcSetupTask::class.java)
     }
@@ -40,7 +40,7 @@ class UnitTest {
     @EnabledOnOs(OS.MAC)
     fun `When user project applies the plugin in macOS, the vlcSetup task should be added to the project`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("vlc-setup")
+        project.pluginManager.apply("ir.mahozad.vlc-setup")
         assertThat(project.tasks.getByName("vlcSetup"))
             .isInstanceOf(ir.mahozad.vlcsetup.mac.VlcSetupTask::class.java)
     }
@@ -48,14 +48,14 @@ class UnitTest {
     @Test
     fun `The vlcSetup task should have the same Gradle group as Compose Multiplatform Desktop tasks`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("vlc-setup")
+        project.pluginManager.apply("ir.mahozad.vlc-setup")
         assertThat(project.tasks.getByName("vlcSetup").group).isEqualTo("compose desktop")
     }
 
     @Test
     fun `When user project applies the plugin, the vlcSetup{} extension should be available in the build script`() {
         val project = ProjectBuilder.builder().build()
-        project.pluginManager.apply("vlc-setup")
+        project.pluginManager.apply("ir.mahozad.vlc-setup")
         val vlcSetupExtension = project.extensions.getByName(VlcSetupExtension.PLUGIN_NAME)
         assertThat(vlcSetupExtension).isNotNull()
     }
@@ -70,7 +70,7 @@ class UnitTest {
         val project = ProjectBuilder.builder().build()
         assertDoesNotThrow {
             project.pluginManager.apply("org.jetbrains.kotlin.jvm")
-            project.pluginManager.apply("vlc-setup")
+            project.pluginManager.apply("ir.mahozad.vlc-setup")
             project.pluginManager.apply("org.jetbrains.compose")
         }
     }
