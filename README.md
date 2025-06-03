@@ -33,7 +33,7 @@ To see a fully-working real application, visit the [Cutcon][Cutcon] project.
    ```kotlin
    plugins {
        // ...
-       id("ir.mahozad.vlc-setup") version "0.0.1"
+       id("ir.mahozad.vlc-setup") version "0.1.0"
    }
    ```
 2. Next, you should [add files to the packaged CMP application][Add files to packaged app].  
