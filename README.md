@@ -14,7 +14,7 @@ The plugin features:
   - Option to select version of VLC to use (not supported for Linux yet)
 
 > [!WARNING]
-> The plugin was tested only on my system. Further feedback is needed to detect problems.
+> The plugin was tested only on my system. Further testing is needed to detect problems.
 
 > [!Note]
 > See the table in [supported-formats-codecs.html][Supported Formats and Codecs Preview] for supported formats/codecs by the base (default) VLC plugins.
@@ -23,7 +23,7 @@ The plugin features:
 > If all VLC plugins are included, then virtually any format and codec should be supported and be playable.
 
 > [!Note]
-> The project (media playback) worked OK on the OSes defined in [tested-operating-systems.html][Tested Operating Systems Preview].
+> Media player implemented using this plugin worked OK on the OSes defined in [tested-operating-systems.html][Tested Operating Systems Preview].
 
 ## Getting started
 Follow the steps below to implement a media player in your desktop CMP app.  
@@ -36,8 +36,8 @@ To see a fully-working real application, visit the [Cutcon][Cutcon] project.
        id("ir.mahozad.vlc-setup") version "0.1.0"
    }
    ```
-2. Next, you should [add files to the packaged CMP application][Add files to packaged app].  
-   So, specify a custom directory (folder) where you would like to place VLC plugin files:
+2. Next, you should [add files to your packaged CMP application][Add files to packaged app].  
+   So, in build.gradle\[.kts] file, specify a custom directory where you would like to place VLC plugin files:
    ```kotlin
    compose.desktop {
        application {
@@ -46,7 +46,7 @@ To see a fully-working real application, visit the [Cutcon][Cutcon] project.
                appResourcesRootDir = rootDir.resolve("myAssets/") // <projectRoot>/myAssets/
    ```
 3. Then specify the plugin options in the `vlcSetup{}` block in the build.gradle\[.kts] file  
-   (specifically, the path for each OS (same path above suffixed with `/<OS name>` where the plugin should put the VLC plugin files):
+   (specifically, the same path above suffixed with `/<OS name>` for each OS where VLC files should be placed):
    ```kotlin
    vlcSetup {
        vlcVersion = "3.0.21"
@@ -57,10 +57,14 @@ To see a fully-working real application, visit the [Cutcon][Cutcon] project.
        pathToCopyVlcWindowsFilesTo = rootDir.resolve("myAssets/windows/")
    }
    ```
-4. Implement custom vlcj `NativeDiscoveryStrategy` classes (See the [Cutcon][Cutcon] project)
-5. Implement your media player (See the [Cutcon][Cutcon] project)
+4. Implement custom vlcj `NativeDiscoveryStrategy` classes.  
+   See [DefaultVlcDiscoverer][DefaultVlcDiscoverer on GitHub] and [MacOsVlcDiscoverer][MacOsVlcDiscoverer on GitHub] classes
+5. Implement your media player.  
+   See [MediaPlayer][MediaPlayer on GitHub] class as an example implementation
+6. Make sure to add `--add-opens=java.base/java.nio=ALL-UNNAMED` JVM option to start your app.  
+   See [`compose.desktop.application{}` block in build.gradle.kts][build.gradle.kts on GitHub]
 
-I plan to release a library for Compose Multiplatform to make steps 4 and 5 easier.
+If this repository gets enough attention, another library can be created to make steps 4 and 5 easier.
 
 [cmp]: https://github.com/jetbrains/compose-multiplatform
 [vlc]: https://github.com/videolan/vlc
@@ -71,3 +75,7 @@ I plan to release a library for Compose Multiplatform to make steps 4 and 5 easi
 [Plugin page on Gradle Plugin Portal]: https://plugins.gradle.org/plugin/ir.mahozad.vlc-setup
 [Supported Formats and Codecs Preview]: https://html-preview.github.io/?url=https://github.com/mahozad/vlc-setup/blob/main/supported-formats-codecs.html
 [Tested Operating Systems Preview]: https://html-preview.github.io/?url=https://github.com/mahozad/vlc-setup/blob/main/tested-operating-systems.html
+[DefaultVlcDiscoverer on GitHub]: https://github.com/mahozad/cutcon/blob/v4/src/main/kotlin/ir/mahozad/cutcon/component/DefaultVlcDiscoverer.kt
+[MacOsVlcDiscoverer on GitHub]: https://github.com/mahozad/cutcon/blob/v4/src/main/kotlin/ir/mahozad/cutcon/component/MacOsVlcDiscoverer.kt
+[MediaPlayer on GitHub]: https://github.com/mahozad/cutcon/blob/v4/src/main/kotlin/ir/mahozad/cutcon/component/MediaPlayer.kt
+[build.gradle.kts on GitHub]: https://github.com/mahozad/cutcon/blob/v4/build.gradle.kts#L193
