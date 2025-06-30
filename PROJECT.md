@@ -4,18 +4,19 @@ Links for downloading VLC releases (source code or packaged):
 - https://get.videolan.org/vlc/
 - https://download.videolan.org/pub/vlc/
 - http://ftp.videolan.org/pub/videolan/vlc
-  Very useful code/issues of a multiplatform app embedding vlc for windows/linux/mac:
+- https://artifacts.videolan.org/vlc/
+Very useful code/issues of a multiplatform app embedding vlc for windows/linux/mac:
 - https://github.com/JetBrains/compose-multiplatform/issues/1089
 - https://github.com/simplex-chat/simplex-chat/pull/3052
 - https://github.com/simplex-chat/simplex-chat/pull/3120
 - https://github.com/simplex-chat/simplex-chat/pull/3130
 - https://github.com/simplex-chat/simplex-chat/pull/3136
 - https://github.com/simplex-chat/simplex-chat/scripts/desktop/prepare-vlc-linux.sh
-  How to build VLC from source:
+How to build VLC from source:
 - https://wiki.videolan.org/Category:Building/
-  How to build VLC for Linux:
+How to build VLC for Linux:
 - https://wiki.videolan.org/UnixCompile/
-  How to build VLC for Android (could also be helpful because Android is Linux; see how VLC builds itself for Android):
+How to build VLC for Android (could also be helpful because Android is Linux; see how VLC builds itself for Android):
 - https://wiki.videolan.org/AndroidCompile/
 - https://code.videolan.org/videolan/vlc-android/
 - https://mvnrepository.com/artifact/org.videolan.android/libvlc-all

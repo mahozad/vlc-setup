@@ -31,6 +31,8 @@ abstract class VlcDownloadTask : Download() {
     }
 
     init {
+        // TODO: Download the snap version of VLC if/when it is published like for Windows and macOS
+        //  See https://code.videolan.org/videolan/vlc/-/issues/29204
         val baseUrl = "https://repo1.maven.org/maven2/ir/mahozad/vlc-plugins-linux"
         src(vlcVersion.map { version -> "$baseUrl/$version/vlc-plugins-linux-$version.jar" })
         dest(vlcArchiveFile)
