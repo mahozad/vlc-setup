@@ -19,7 +19,7 @@ class FunctionalTest {
 
     val pluginDirectory by lazy {
         // return@lazy javaClass.getResource("/placeholder.txt")?.toURI()?.toPath()?.parent
-        var pluginDirectory = javaClass.getProtectionDomain().codeSource.location.toURI().toPath()
+        var pluginDirectory = javaClass.protectionDomain.codeSource.location.toURI().toPath()
         while (pluginDirectory.listDirectoryEntries().singleOrNull { it.name == "build.gradle.kts" } == null) {
             pluginDirectory = pluginDirectory.parent
         }
