@@ -11,6 +11,7 @@ dependencies {
     testImplementation(libs.kotlin.gradlePlugin)
     testImplementation(libs.compose.gradlePlugin)
     testImplementation(libs.junit5)
+    testRuntimeOnly(libs.junit5.platformLauncher)
     testImplementation(libs.assertj)
     testImplementation(libs.systemStubs.core)
     testImplementation(libs.systemStubs.jupiter)
