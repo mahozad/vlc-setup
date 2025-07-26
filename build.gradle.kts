@@ -3,7 +3,7 @@ import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
 plugins {
     alias(libs.plugins.kotlin.jvm)
     alias(libs.plugins.buildConfig)
-    alias(libs.plugins.publish.plugin)
+    alias(libs.plugins.gradlePublish)
 }
 
 group = "ir.mahozad"
