@@ -31,7 +31,7 @@ class FunctionalTest {
         .getProperty("user.home")
         .let(::Path)
         .resolve(".gradle")
-        .resolve("temp-for-plugin-test")
+        .resolve("vlcSetup-test")
         .createDirectories()
 
     /*language=properties*/
