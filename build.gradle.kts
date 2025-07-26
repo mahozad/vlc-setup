@@ -1,8 +1,9 @@
 import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
 
 plugins {
-    alias(libs.plugins.publish.plugin)
     alias(libs.plugins.kotlin.jvm)
+    alias(libs.plugins.buildConfig)
+    alias(libs.plugins.publish.plugin)
 }
 
 group = "ir.mahozad"
@@ -17,6 +18,11 @@ dependencies {
     testImplementation(libs.assertj)
     testImplementation(libs.systemStubs.core)
     testImplementation(libs.systemStubs.jupiter)
+}
+
+buildConfig {
+    buildConfigField("KOTLIN_VERSION", libs.versions.kotlin.gradlePlugin.get())
+    buildConfigField("COMPOSE_VERSION", libs.versions.compose.gradlePlugin.get())
 }
 
 tasks.withType<Test> {

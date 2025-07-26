@@ -1,5 +1,6 @@
 package ir.mahozad.vlcsetup.win
 
+import ir.mahozad.vlc_setup.BuildConfig
 import org.assertj.core.api.Assertions.assertThat
 import org.gradle.testkit.runner.BuildResult
 import org.gradle.testkit.runner.GradleRunner
@@ -55,9 +56,9 @@ class FunctionalTest {
     fun createBuildContent(extraContent: () -> String) = """
         import org.jetbrains.compose.desktop.application.dsl.TargetFormat.*
         plugins {
-            id("org.jetbrains.kotlin.jvm") version "2.2.0"
-            id("org.jetbrains.kotlin.plugin.compose") version "2.2.0"
-            id("org.jetbrains.compose") version "1.8.2"
+            id("org.jetbrains.kotlin.jvm") version "${BuildConfig.KOTLIN_VERSION}"
+            id("org.jetbrains.kotlin.plugin.compose") version "${BuildConfig.KOTLIN_VERSION}"
+            id("org.jetbrains.compose") version "${BuildConfig.COMPOSE_VERSION}"
             id("ir.mahozad.vlc-setup")
         }
         compose.desktop {
