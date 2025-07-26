@@ -1,5 +1,7 @@
 .gradle
 build/
+vlc-plugins-linux/src/main/resources/files/
+
 !gradle/wrapper/gradle-wrapper.jar
 !**/src/main/**/build/
 !**/src/test/**/build/

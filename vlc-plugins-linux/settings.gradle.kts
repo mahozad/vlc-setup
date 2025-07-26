@@ -1,8 +1,7 @@
-rootProject.name = "vlc-setup"
-
-includeBuild("vlc-plugins-linux")
+rootProject.name = "vlc-plugins-linux"
 
 pluginManagement {
+    includeBuild("vlc-plugins-linux-setup")
     repositories {
         mavenCentral()
         gradlePluginPortal()
@@ -10,6 +9,11 @@ pluginManagement {
 }
 
 dependencyResolutionManagement {
+    versionCatalogs {
+        create("libs") {
+            from(files("../gradle/libs.versions.toml"))
+        }
+    }
     repositories {
         google()
         mavenCentral()
