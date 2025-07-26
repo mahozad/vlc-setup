@@ -1,3 +1,5 @@
+import org.gradle.api.tasks.wrapper.Wrapper.DistributionType
+
 plugins {
     alias(libs.plugins.publish.plugin)
     alias(libs.plugins.kotlin.jvm)
@@ -19,6 +21,13 @@ dependencies {
 
 tasks.withType<Test> {
     useJUnitPlatform()
+}
+
+tasks.wrapper {
+    gradleVersion = libs.versions.gradle.get()
+    networkTimeout = 60_000 // milliseconds
+    distributionType = DistributionType.ALL
+    validateDistributionUrl = false
 }
 
 gradlePlugin {
