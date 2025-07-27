@@ -37,7 +37,7 @@ publishing {
         }
         maven {
             name = "GitHubPackages"
-            url = uri("https://maven.pkg.github.com/mahozad/${project.name}")
+            url = uri("https://maven.pkg.github.com/mahozad/${rootProject.name}")
             credentials(credentialsType = PasswordCredentials::class)
         }
     }
@@ -59,7 +59,7 @@ mavenPublishing {
     )
 
     pom {
-        url = "https://mahozad.ir/${project.name}"
+        url = "https://central.sonatype.com/artifact/ir.mahozad/vlc-plugins-linux"
         name = project.name
         description = "Publishes self-contained VLC plugins (.so files) to be used as a JVM library for Linux targets."
         inceptionYear = "2024"
@@ -84,17 +84,17 @@ mavenPublishing {
         }
         scm {
             tag = "HEAD"
-            url = "https://github.com/mahozad/${project.name}"
-            connection = "scm:git:github.com/mahozad/${project.name}.git"
-            developerConnection = "scm:git:ssh://github.com/mahozad/${project.name}.git"
+            url = "https://github.com/mahozad/${rootProject.name}"
+            connection = "scm:git:github.com/mahozad/${rootProject.name}.git"
+            developerConnection = "scm:git:ssh://github.com/mahozad/${rootProject.name}.git"
         }
         issueManagement {
             system = "GitHub"
-            url = "https://github.com/mahozad/${project.name}/issues"
+            url = "https://github.com/mahozad/${rootProject.name}/issues"
         }
         ciManagement {
             system = "GitHub Actions"
-            url = "https://github.com/mahozad/${project.name}/actions"
+            url = "https://github.com/mahozad/${rootProject.name}/actions"
         }
     }
 }
