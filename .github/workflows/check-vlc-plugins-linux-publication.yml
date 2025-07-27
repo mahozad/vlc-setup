@@ -1,0 +1,46 @@
+# TODO: This workflow should no longer be needed when the following issue is resolved:
+#  https://code.videolan.org/videolan/vlc/-/issues/29204
+
+name: Check vlc-plugins-linux publication
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  check-vlc-plugins-linux-publication:
+    name: Create VLC plugins Linux publication
+    runs-on: ubuntu-24.04 # Should be a Linux distribution
+    env:
+      SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
+      SIGNING_PASSWORD: ${{ secrets.SIGNING_PASSWORD }}
+      SIGNING_KEY_CONTENT_BASE64: ${{ secrets.SIGNING_KEY_CONTENT_BASE64 }}
+      CENTRAL_PORTAL_USERNAME: ${{ secrets.CENTRAL_PORTAL_USERNAME }}
+      CENTRAL_PORTAL_PASSWORD: ${{ secrets.CENTRAL_PORTAL_PASSWORD }}
+      GH_USERNAME: ${{ secrets.GH_USERNAME }}
+      GH_PASSWORD: ${{ secrets.GITHUB_TOKEN }} # Automatically provided by GitHub Actions
+    steps:
+      - name: Checkout the code
+        uses: actions/checkout@v4
+      - name: Set up a specific Java version
+        uses: actions/setup-java@v4
+        with:
+          distribution: "temurin" # OR adopt OR microsoft OR...
+          java-version: "24"
+      - name: Decode the private GPG key file stored in GitHub secrets
+        run: echo $SIGNING_KEY_CONTENT_BASE64 | base64 --decode --ignore-garbage > private-key.gpg
+      - name: Generate VLC files
+        run: ./gradlew :vlc-plugins-linux:vlcPreparePlugins --stacktrace
+      - name: Create the publication
+        run: >
+          ./gradlew :vlc-plugins-linux:publishAllPublicationsToCustomLocalRepository
+          -Psigning.secretKeyRingFile="../private-key.gpg"
+          -Psigning.password="$SIGNING_PASSWORD"
+          -Psigning.keyId="$SIGNING_KEY_ID"
+          --stacktrace
+      - name: Store the publication at the bottom of the workflow summary page
+        uses: actions/upload-artifact@v4
+        with:
+          name: resultMavenPublication
+          path: vlc-plugins-linux/build/local-repository/
