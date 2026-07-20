@@ -28,19 +28,25 @@ abstract class VlcSetupPlugin : Plugin<Project> {
             val vlcSetupTask = tasksConfigure.configure()
             vlcSetupTask?.let(vlcSetupTasks::add)
         }
+        // Must defer with afterEvaluate to avoid conflicts with KMP WASM target
+        // initialization (LibraryWasm.getOptimizeTask() NPE). By this point all
+        // target-specific processResources tasks (including WASM) are fully configured.
+        //
         // See the PROJECT.md file for more information
         // and also https://docs.gradle.org/current/userguide/working_with_files.html
-        project
-            .tasks
-            .matching { it.name == "processResources" }
-            .all { it.dependsOn(vlcSetupTasks) }
-        // If the windowsCopyPath is inside the path defined as Compose Multiplatform resources directory then
-        // it makes the task prepareAppResources implicitly depend on vlcSetup task because its input directory
-        // contains output files/directories (windowsCopyPath) of vlcSetup task.
-        // So, here, the prepareAppResources task (if/when it exists) is configured to run after vlcSetup task.
-        project
-            .tasks
-            .matching { it.name == "prepareAppResources" }
-            .all { it.mustRunAfter(vlcSetupTasks) }
+        project.afterEvaluate {
+            project
+                .tasks
+                .matching { it.name == "processResources" }
+                .all { it.dependsOn(vlcSetupTasks) }
+            // If the windowsCopyPath is inside the path defined as Compose Multiplatform resources directory then
+            // it makes the task prepareAppResources implicitly depend on vlcSetup task because its input directory
+            // contains output files/directories (windowsCopyPath) of vlcSetup task.
+            // So, here, the prepareAppResources task (if/when it exists) is configured to run after vlcSetup task.
+            project
+                .tasks
+                .matching { it.name == "prepareAppResources" }
+                .all { it.mustRunAfter(vlcSetupTasks) }
+        }
     }
 }
